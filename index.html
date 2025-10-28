@@ -15,9 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -295,60 +293,68 @@
       <div class="container">
         <div class="row gap-x-lg-4 justify-content-between">
           <div class="col-lg-4 js-custom-dots">
-            <a href="#" class="service-item link horizontal d-flex active" data-aos="fade-left" data-aos-delay="0">
+            <a href="#" class="service-item link horizontal d-flex active js-tab-item" data-target="tab-0"
+              data-aos="fade-left" data-aos-delay="0">
               <div class="service-icon color-1 mb-4">
                 <i class="bi bi-alarm"></i>
               </div>
               <!-- /.icon -->
               <div class="service-contents">
-                <h3>Modern and clean design</h3>
+                <h3>Croquetas de quinoa, vegetales y queso</h3>
                 <p>
-                  Far far away, behind the word mountains, far from the countries .
+                  Una opción nutritiva, sabrosa y versátil para incorporar proteínas vegetales y más
+                  color a tu plato. Apta para freezer.
                 </p>
               </div>
               <!-- /.service-contents-->
             </a>
             <!-- /.service -->
 
-            <a href="#" class="service-item link horizontal d-flex" data-aos="fade-left" data-aos-delay="100">
+            <a href="#" class="service-item link horizontal d-flex js-tab-item" data-target="tab-1" data-aos="fade-left"
+              data-aos-delay="100">
               <div class="service-icon color-2 mb-4">
                 <i class="bi bi-bag-check"></i>
               </div>
               <!-- /.icon -->
               <div class="service-contents">
-                <h3>Sell Products</h3>
+                <h3>Hummus casero</h3>
                 <p>
-                  Far far away, behind the word mountains, far from the countries .
+                  Para la tostada de la mañana, tu rapidita o
+                  sándwich. Sumá proteínas, fibra y cremosidad a tus comidas.
                 </p>
               </div>
               <!-- /.service-contents-->
             </a>
             <!-- /.service -->
 
-            <a href="#" class="service-item link horizontal d-flex" data-aos="fade-left" data-aos-delay="200">
+            <a href="#" class="service-item link horizontal d-flex js-tab-item" data-target="tab-2" data-aos="fade-left"
+              data-aos-delay="200">
               <div class="service-icon color-3 mb-4">
                 <i class="bi bi-briefcase"></i>
               </div>
               <!-- /.icon -->
               <div class="service-contents">
-                <h3>Success Every Day</h3>
+                <h3>Vegetales asados</h3>
                 <p>
-                  Far far away, behind the word mountains, far from the countries .
+                  Una opción fácil, nutritiva y colorida, ideal para acompañar cualquier comida o para comer como plato
+                  principal.
                 </p>
               </div>
               <!-- /.service-contents-->
             </a>
             <!-- /.service -->
 
-            <a href="#" class="service-item link horizontal d-flex" data-aos="fade-left" data-aos-delay="300">
+            <a href="#" class="service-item link horizontal d-flex js-tab-item" data-target="tab-3" data-aos="fade-left"
+              data-aos-delay="300">
               <div class="service-icon color-4 mb-4">
                 <i class="bi bi-easel"></i>
               </div>
               <!-- /.icon -->
               <div class="service-contents">
-                <h3>Bring Ideas to Life</h3>
+                <h3>Empanadas criollas de proteína de soja</h3>
                 <p>
-                  Far far away, behind the word mountains, far from the countries .
+                  Un relleno proteico, sabroso, versátil y fácil de preparar, ideal para empanadas,
+                  pasteles o wraps.
                 </p>
               </div>
               <!-- /.service-contents-->
@@ -357,71 +363,187 @@
           </div>
 
           <div class="col-lg-8">
-            <div class="swiper init-swiper-tabs">
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoHeight": true,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  },
-                  "breakpoints": {
-                    "320": {
-                      "slidesPerView": 1,
-                      "spaceBetween": 40
-                    },
-                    "1200": {
-                      "slidesPerView": 1,
-                      "spaceBetween": 1
-                    }
-                  }
-                }
-              </script>
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="assets/img/img_h_1.jpg" alt="Image" class="img-fluid">
-                  <div class="p-4">
-                    <h3 class="text-black h5 mb-3">Modern and clean design</h3>
+            <div class="tab-panels">
+              <div id="tab-0" class="tab-panel active">
+                <img src="assets/img/img_h_1.jpg" alt="Image" class="img-fluid">
+                <div class="mt-3">
+                  <button class="btn btn-sm btn-link collapse-toggle" aria-expanded="false"
+                    aria-controls="tab-0-collapse">
+                    <span class="bi bi-chevron-down toggle-icon" aria-hidden="true"></span>
+                    <span class="toggle-label">Leer más</span>
+                  </button>
+                </div>
+                <div class="p-4">
+                  <div id="tab-0-collapse" class="collapse-content">
+                    <h3 class="text-black h5 mb-3">Croquetas de quinoa, vegetales y queso</h3>
                     <div class="row">
                       <div class="col-lg-8">
-                        <p>
-                          Far far away, behind the word mountains, far from the
-                          countries Vokalia and Consonantia, there live the blind
-                          texts. Separated they live in Bookmarksgrove right at the
-                          coast of the Semantics, a large language ocean.
-                        </p>
-                        <p>
-                          A small river named Duden flows by their place and
-                          supplies it with the necessary regelialia. It is a
-                          paradisematic country, in which roasted parts of sentences
-                          fly into your mouth.
-                        </p>
+                        <div class="title"><strong>Paso a paso</strong></div><br>
+                        <ol class="preparation-steps">
+                          <li>Lavá varias veces la quinoa para retirar su sabor amargo.</li>
+                          <li>En una olla antiadherente, cociná la quinoa junto con los condimentos y el líquido elegido. Revolvé cada tanto hasta que el grano esté blando; si falta líquido, agregá un poco más y continuá la cocción.</li>
+                          <li>Rallá la zanahoria, picá el morrón y el apio. Saltealos en un chorrito de aceite y sumalos a la quinoa cocida. Incorporá el perejil picado.</li>
+                          <li>Cortá el queso en cubos de aproximadamente 2 x 2 cm e incorporá al relleno.</li>
+                          <li>Formá porciones con las manos, colocá un trozo de queso en el centro y cerrá formando croquetas.</li>
+                          <li>Pasalas por huevo batido y por el rebozador elegido. Cociná al horno, en air fryer o fritas según tu preferencia.</li>
+                        </ol><br>
+
+                        <div class="title"><strong>Consejos Nutri Qi</strong></div><br>
+                        <p><strong>Sabor:</strong> probá la mezcla cuando todavía esté caliente para ajustar condimentos con mayor precisión.</p>
+                        <p><strong>Salteado de vegetales:</strong> el tipo y la cantidad de aceite influirán en la textura final; usá con moderación si buscás una croqueta más liviana.</p>
+                        <p><strong>Hojas verdes:</strong> si las usás, cocinalas y escurrilas bien antes de mezclarlas para evitar exceso de humedad.</p>
+                        <p>Una receta fácil, nutritiva y adaptable: ideal para congelar y tener crudo listo para la vianda.</p>
                       </div>
                       <div class="col-lg-4">
-                        <ul class="list-unstyled list-check">
-                          <li>Far far away, behind the word</li>
-                          <li>Far from the countries Vokalia</li>
-                          <li>Separated they live in Bookmarksgrove</li>
+                        <div class="title"><strong>Ingredientes</strong></div>
+                        <ul class="simple-bullet">
+                          <li>1 taza de quinoa</li>
+                          <li>2 ½ tazas de leche o bebida vegetal (para una textura más cremosa y nutritiva)</li>
+                          <li>Vegetales a elección (usé 1 zanahoria mediana, ¼ morrón y un tallo de apio)</li>
+                          <li>1 puñado grande de perejil fresco</li>
+                          <li>Condimentos: nuez moscada, pimienta negra, sal y los que prefieras</li>
+                          <li>1 huevo (para empanar)</li>
+                          <li>Rebozador a elección: pan rallado, panko, etc.</li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/img_h_2.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div id="tab-1" class="tab-panel">
+                <img src="assets/img/img_h_2.jpg" alt="Image" class="img-fluid">
+                 <div class="mt-3">
+                  <button class="btn btn-sm btn-link collapse-toggle" aria-expanded="false"
+                    aria-controls="tab-1-collapse">
+                    <span class="bi bi-chevron-down toggle-icon" aria-hidden="true"></span>
+                    <span class="toggle-label">Leer más</span>
+                  </button>
                 </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/img_h_3.jpg" alt="Image" class="img-fluid">
+                <div class="p-4">
+                  <div id="tab-1-collapse" class="collapse-content">
+                    <h3 class="text-black h5 mb-3">Hummus casero</h3>
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="title"><strong>Paso a paso</strong></div><br>
+                        <ol class="preparation-steps">
+                          <li>Mixear los garbanzos junto con el tahini, el agua de garbanzos y el aceite hasta obtener una pasta cremosa.</li>
+                          <li>Agregar el jugo de limón y los condimentos elegidos. Mixear nuevamente.</li>
+                          <li>Incorporar los cubos de hielo y mixear hasta lograr la textura deseada.</li>
+                        </ol><br>
+
+                        <div class="title"><strong>Consejos Nutri Qi</strong></div><br>
+                        <p>Podés preparar el hummus con anticipación y guardarlo en la heladera hasta 3-4 días.</p>
+                        <p>Para salir un poco de la mayonesa, el hummus es un excelente aliado a la hora de brindar cremosidad y sabor a tus preparaciones. Su ventaja es que no tiene aditivos, grasas saturadas en exceso ni conservantes en su elaboración.</p>
+                        <p>Si lo comprás hecho, chequeá los ingredientes y asegurate que sean los mismos que aparecen en la receta.</p>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="title"><strong>Ingredientes</strong></div>
+                        <ul class="simple-bullet">
+                          <li>1 lata de garbanzos cocidos</li>
+                          <li>2 cdas de tahini (pasta de semillas de sésamo) opcional</li>
+                          <li>¼ taza de agua de los garbanzos</li>
+                          <li>2 cdas de aceite de oliva extra virgen</li>
+                          <li>Jugo de limón a gusto</li>
+                          <li>Sal, pimienta o condimentos a gusto</li>
+                          <li>2 cubos de hielo</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="swiper-slide">
-                  <img src="assets/img/img_h_4.jpg" alt="Image" class="img-fluid">
+              </div>
+              <div id="tab-2" class="tab-panel">
+                <img src="assets/img/img_h_3.jpg" alt="Image" class="img-fluid">
+                <div class="mt-3">
+                  <button class="btn btn-sm btn-link collapse-toggle" aria-expanded="false"
+                    aria-controls="tab-2-collapse">
+                    <span class="bi bi-chevron-down toggle-icon" aria-hidden="true"></span>
+                    <span class="toggle-label">Leer más</span>
+                  </button>
+                </div>
+                <div class="p-4">
+                  <div id="tab-2-collapse" class="collapse-content">
+                    <h3 class="text-black h5 mb-3">Vegetales asados</h3>
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="title"><strong>Preparación</strong></div><br>
+                        <ol class="preparation-steps">
+                          <li>Lavá, pelá y cortá los vegetales a tu gusto.</li>
+                          <li>Colocalos en una asadera antiadherente por separado, ya que tienen distintos tiempos de cocción.</li>
+                          <li>Por encima, agregá aceite de oliva, sal y los condimentos elegidos.</li>
+                          <li>Asalos en horno medio hasta que estén tiernos y dorados, revisando la cocción de cada vegetal.</li>
+                        </ol><br>
+
+                        <div class="title"><strong>Consejos Nutri Qi</strong></div><br>
+                        <p><strong>Masajear los vegetales:</strong> al mezclar los vegetales con aceite, sal y condimentos antes de hornear, el sabor se adhiere mejor y se cocinan más rápido.</p>
+                        <p><strong>Variedad de vegetales:</strong> además de los indicados, podés asar repollo, coliflor, brócoli, tomate cherry, zapallitos, zucchini o repollitos de Bruselas entre otros.</p>
+                        <p><strong>Paso extra:</strong> prepará una salsa blanca y, cuando los vegetales estén listos, volcala por arriba, agregá queso rallado y tendrás unos vegetales gratinados deliciosos.</p>
+                        <p>Fácil, saludable y adaptable: podés combinar tus vegetales favoritos y crear platos llenos de color, sabor y nutrientes.</p>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="title"><strong>Ingredientes</strong></div>
+                        <ul class="simple-bullet">
+                          <li>1 remolacha</li>
+                          <li>1 zanahoria</li>
+                          <li>¼ calabaza</li>
+                          <li>¼ morrón</li>
+                          <li>1 berenjena</li>
+                          <li>Aceite de oliva extra virgen</li>
+                          <li>Sal</li>
+                          <li>Condimentos al gusto (pimentón, pimentón ahumado, tomillo, etc.)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="tab-3" class="tab-panel">
+                <img src="assets/img/img_h_4.jpg" alt="Image" class="img-fluid">
+                <div class="mt-3">
+                  <button class="btn btn-sm btn-link collapse-toggle" aria-expanded="false"
+                    aria-controls="tab-3-collapse">
+                    <span class="bi bi-chevron-down toggle-icon" aria-hidden="true"></span>
+                    <span class="toggle-label">Leer más</span>
+                  </button>
+                </div>
+                <div class="p-4">
+                  <div id="tab-3-collapse" class="collapse-content">
+                    <h3 class="text-black h5 mb-3">Empanadas criollas de proteína de soja</h3>
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="title"><strong>Preparación</strong></div><br>
+                        <ol class="preparation-steps">
+                          <li>Hervir la proteína de soja por 1 minuto.</li>
+                          <li>Escurrir y lavar hasta que el agua pase de amarilla a transparente.</li>
+                          <li>Retirar el exceso de agua y saltear la proteína. Cuando comience a secarse y dorarse, agregar sal.</li>
+                          <li>Bajar el fuego, volcar la salsa de soja y revolver rápido y brevemente para que no se queme.</li>
+                          <li>Condimentar a gusto con pimienta, pimentón, orégano, adobo u otro condimento a elección.</li>
+                          <li>Cocinar el huevo y picarlo chico. Lavar y picar el morrón en cubitos y saltearlo. Lavar y picar el perejil.</li>
+                          <li>Mezclar todos los ingredientes con la proteína de soja. Agregar salsa de tomate o tomate la cantidad necesaria para humedecer el relleno pero que no quede líquido suelto.</li>
+                        </ol><br>
+                        <p>El relleno ya está listo para armar las empanadas.</p>
+
+                        <div class="title"><strong>Consejos Nutri Qi</strong></div><br>
+                        <p><strong>Proteína de soja:</strong> se puede cocinar de muchas maneras; esta es una opción muy sabrosa.</p>
+                        <p><strong>Salsa de soja:</strong> para su elaboración se precisa agua, poroto de soja, sal y/o trigo. Evitá las que contengan glutamato monosódico.</p>
+                        <p><strong>Frezar:</strong> podés congelar el relleno siempre que no tenga huevo duro, porque luego cambia su textura. Si cocinaste mucha proteína, podés apartar un poco y frezarla para otra receta.</p>
+                        <p>Este relleno también es ideal para un pastel de carne veggie.</p>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="title"><strong>Ingredientes</strong></div>
+                        <ul class="simple-bullet">
+                          <li>150 g de proteína de soja fina</li>
+                          <li>1 morrón</li>
+                          <li>Perejil fresco</li>
+                          <li>3 cdas de salsa de soja</li>
+                          <li>Condimentos: pimienta negra, pimentón, sal, orégano, adobo</li>
+                          <li>Aceitunas o huevo duro (opcional)</li>
+                          <li>100 ml de salsa de tomate aproximadamente</li>
+                          <li>Tapas de empanadas</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

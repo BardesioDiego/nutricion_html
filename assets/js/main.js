@@ -1,17 +1,7 @@
-/**
-* Template Name: Active
-* Template URL: https://bootstrapmade.com/active-bootstrap-website-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
 (function() {
   "use strict";
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -22,9 +12,6 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
@@ -34,9 +21,7 @@
   }
   mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
+ 
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
@@ -46,9 +31,7 @@
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
+ 
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function(e) {
       e.preventDefault();
@@ -58,9 +41,6 @@
     });
   });
 
-  /**
-   * Preloader
-   */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -68,9 +48,7 @@
     });
   }
 
-  /**
-   * Scroll top button
-   */
+ 
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -89,9 +67,7 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
+ 
   function aosInit() {
     AOS.init({
       duration: 600,
@@ -178,16 +154,148 @@
 
   window.addEventListener("load", initSwiperTabs);
 
-  /**
-   * Initiate glightbox
-   */
+ 
+  function initStaticTabs() {
+    document.querySelectorAll('.js-custom-dots').forEach(function(container) {
+      const tabs = container.querySelectorAll('a.js-tab-item');
+      const section = container.closest('section');
+      if (!section) return;
+      const panels = section.querySelectorAll('.tab-panel');
+      const wrapper = section.querySelector('.tab-panels');
+      if (!wrapper || panels.length === 0) return;
+
+      // ensure wrapper has relative positioning and a height transition
+      wrapper.style.position = wrapper.style.position || 'relative';
+      wrapper.style.transition = wrapper.style.transition || 'height 360ms ease';
+
+      // normalize panels: set ARIA and ensure only one active
+      let activePanel = section.querySelector('.tab-panel.active') || panels[0];
+      panels.forEach(function(p) {
+        if (p === activePanel) {
+          p.classList.add('active');
+          p.setAttribute('aria-hidden', 'false');
+        } else {
+          p.classList.remove('active');
+          p.setAttribute('aria-hidden', 'true');
+        }
+        // make panels stack on top of each other to enable cross-fade
+        p.style.position = 'absolute';
+        p.style.top = 0;
+        p.style.left = 0;
+        p.style.width = '100%';
+      });
+
+      // set initial wrapper height to active panel
+      wrapper.style.height = activePanel.scrollHeight + 'px';
+
+      tabs.forEach(function(tab) {
+        // set initial active state on tabs
+        if (tab.dataset.target === activePanel.id) tab.classList.add('active');
+
+        tab.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (this.classList.contains('active')) return;
+
+          // update tab active classes
+          tabs.forEach(function(t) { t.classList.remove('active'); });
+          this.classList.add('active');
+
+          const target = this.dataset.target;
+          if (!target) return;
+          const newPanel = section.querySelector('#' + target);
+          const oldPanel = section.querySelector('.tab-panel.active');
+          if (!newPanel || newPanel === oldPanel) return;
+
+         
+          wrapper.style.height = (oldPanel ? oldPanel.scrollHeight : wrapper.scrollHeight) + 'px';
+
+      
+          newPanel.classList.add('active');
+          newPanel.setAttribute('aria-hidden', 'false');       
+          newPanel.offsetHeight;
+          wrapper.style.height = newPanel.scrollHeight + 'px';    
+          const transitionDuration = 400; 
+          setTimeout(function() {
+            if (oldPanel && oldPanel !== newPanel) {
+              oldPanel.classList.remove('active');
+              oldPanel.setAttribute('aria-hidden', 'true');
+            }
+
+            wrapper.style.height = newPanel.scrollHeight + 'px';
+          }, transitionDuration);
+        });
+      });
+    });
+  }
+
+  window.addEventListener('load', initStaticTabs);
+
+
+  function initCollapseToggles() {
+    document.querySelectorAll('.collapse-toggle').forEach(function(btn) {
+      const targetId = btn.getAttribute('aria-controls');
+      const content = document.getElementById(targetId);
+      if (!content) return;
+
+      const panel = content.closest('.tab-panel');
+      const wrapper = panel ? panel.closest('section').querySelector('.tab-panels') : null;
+
+ 
+      if (!content.classList.contains('open')) {
+        content.style.maxHeight = '0px';
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        if (isOpen) {
+          if (wrapper && panel) {
+            const panelBefore = panel.scrollHeight;
+            const contentH = content.scrollHeight;
+            const target = Math.max(0, panelBefore - contentH);
+            wrapper.style.height = target + 'px';
+          }
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.offsetHeight;
+          content.style.maxHeight = '0px';
+          content.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+          content.offsetHeight;
+          if (wrapper && panel) {
+            wrapper.style.height = panel.scrollHeight + 'px';
+          }
+        }
+      });
+
+      content.addEventListener('transitionend', function(e) {
+        if (e.propertyName !== 'max-height') return;
+        if (content.classList.contains('open')) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          if (wrapper && panel) wrapper.style.height = panel.scrollHeight + 'px';
+        } else {
+          if (wrapper && panel) wrapper.style.height = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  }
+
+  window.addEventListener('load', initCollapseToggles);
+
+
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
-  /**
-   * Init isotope layout and filters
-   */
+
   document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
