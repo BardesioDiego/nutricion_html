@@ -9,8 +9,8 @@
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #212529; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #2d465e; /* Color for headings, subheadings and title throughout the website */
+  --default-color: #545454; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ff604a; /* Color for headings, subheadings and title throughout the website */
   --accent-color: #ff604a; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
@@ -35,7 +35,7 @@
 
 
 #about-2 {
-  --background-color: #80bd70;
+  --background-color: #ff604a;
 }
 
 
@@ -814,7 +814,7 @@ section,
 
 .about h1 {
   color: var(--heading-color);
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .about p {
@@ -839,10 +839,10 @@ section,
 }
 
 .about .section-subtitle {
-  font-size: 15px;
+  font-size: 22px;
   margin-bottom: 10px;
   display: block;
-  color: var(--default-color);
+  color: #ff604a;
 }
 
 /*--------------------------------------------------------------
@@ -863,7 +863,7 @@ section,
 
 .about-2 .content-title {
   color: var(--heading-color);
-  font-size: 22px;
+  font-size: 25px;
   margin-bottom: 30px;
 }
 
@@ -914,7 +914,7 @@ section,
 
 .services .services-item h3 {
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--heading-color);
 }
 
@@ -936,7 +936,7 @@ section,
   line-height: 1.6;
   font-size: 18px;
   font-weight: normal;
-  color: var(--default-color);
+  color: #ff604a;
 }
 
 .stats .content-title {
@@ -1139,6 +1139,53 @@ section,
                 visibility: visible;
                 transform: translateY(0);
               }
+
+.tabs .service-item:not(.active) .service-contents h3,
+.tabs .service-item:not(.active) .service-contents p {
+  color: #ffffff;
+}
+
+.tabs .service-item:not(.active) .service-icon {
+  background-color: #ffffff;
+  /* keep the icon container look consistent */
+}
+
+.tabs .service-item:not(.active) .service-icon i {
+  color: var(--accent-color);
+}
+
+/* Make the expanded recipe content white (headings, paragraphs, lists, strong text and links) */
+.tabs .tab-panel .collapse-content,
+#tabs .tab-panel .collapse-content {
+  color: #ffffff;
+}
+.tabs .tab-panel .collapse-content h3,
+.tabs .tab-panel .collapse-content p,
+.tabs .tab-panel .collapse-content li,
+.tabs .tab-panel .collapse-content .title,
+.tabs .tab-panel .collapse-content .preparation-steps li,
+.tabs .tab-panel .collapse-content .simple-bullet li,
+.tabs .tab-panel .collapse-content strong,
+.tabs .tab-panel .collapse-content a {
+  color: #ffffff;
+}
+
+/* Ensure list markers inherit the text color */
+.tabs .tab-panel .collapse-content ol,
+.tabs .tab-panel .collapse-content ul {
+  color: #ffffff;
+}
+
+/* Make recipe titles bold/strong when content is expanded */
+.tabs .tab-panel .collapse-content h3 {
+  font-weight: 700; /* visually strong */
+  color: #ffffff; /* ensure title is white */
+}
+.tabs .tab-panel .collapse-content .title strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 /*--------------------------------------------------------------
 # Services 2 Section
 --------------------------------------------------------------*/
@@ -1322,6 +1369,7 @@ section,
 }
 
 .faq .custom-accordion .accordion-item {
+  /* keep header styling orange, but answers will be white */
   background-color: #ff604a;
   margin-bottom: 0px;
   position: relative;
@@ -1375,7 +1423,8 @@ section,
 
 .faq .custom-accordion .accordion-item .accordion-body {
   padding: 20px 20px 20px 20px;
-  color: #ffffff;
+  background-color: #ffffff; /* answers background should be white */
+  color: var(--default-color); /* dark text for readability */
 }
 
 /*--------------------------------------------------------------
