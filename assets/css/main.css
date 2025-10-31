@@ -164,8 +164,18 @@ h1 {
 }
 
 .header .logo img {
-  max-height: 32px;
+  max-height: 100px; 
+  width: auto;
+  height: auto;
   margin-right: 8px;
+  display: block;
+}
+
+/* Larger logo on wide screens */
+@media (min-width: 1200px) {
+  .header .logo img {
+    max-height: 64px;
+  }
 }
 
 .header .logo h1 {
@@ -872,6 +882,37 @@ section,
   color: var(--default-color);
 }
 
+.about-2 .img-wrap {
+  min-height: 600px;
+  display: block;
+}
+
+.about-2 .img img.img-fluid {
+  border-radius: 12px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crop to fill without distortion */
+}
+
+@media (max-width: 767px) {
+  .about-2 .img-wrap {
+    min-height: 300px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .about-2 .img-wrap {
+    min-height: 360px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-2 .img-wrap {
+    min-height: 480px;
+  }
+}
+
 .about-2 .btn-get-started {
   background-color: var(--accent-color);
   color: var(--contrast-color);
@@ -1574,6 +1615,11 @@ section,
 --------------------------------------------------------------*/
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
+}
+.swiper-slide img,
+.swiper-slide .img-fluid {
+  border-radius: 12px;
+  display: block;
 }
 
 .portfolio-details .swiper-wrapper {
