@@ -900,7 +900,13 @@ section,
     min-height: 300px;
   }
 }
-
+/* Specific rounding for the images used elsewhere (e.g. stats/about overlap) */
+.images-overlap img.img-1 {
+  border-radius: 12px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 @media (min-width: 768px) and (max-width: 1199px) {
   .about-2 .img-wrap {
     min-height: 360px;
