@@ -892,7 +892,7 @@ section,
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* crop to fill without distortion */
+  object-fit: cover; 
 }
 
 @media (max-width: 767px) {
@@ -900,12 +900,27 @@ section,
     min-height: 300px;
   }
 }
-/* Specific rounding for the images used elsewhere (e.g. stats/about overlap) */
+
 .images-overlap img.img-1 {
   border-radius: 12px;
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+
+.recent-posts-widget .post-item .post-thumb {
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+}
+
+.recent-posts-widget .post-item .recent-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
 }
 @media (min-width: 768px) and (max-width: 1199px) {
   .about-2 .img-wrap {
