@@ -88,7 +88,16 @@
       );
 
       if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
+        // Some projects include a custom pager initializer named
+        // `initSwiperWithCustomPagination`. It isn't defined in this
+        // codebase, so guard the call to avoid runtime errors.
+        if (typeof initSwiperWithCustomPagination === 'function') {
+          initSwiperWithCustomPagination(swiperElement, config);
+        } else {
+          // Fallback to a normal Swiper instance so the element still works
+          // even if the custom initializer is missing.
+          new Swiper(swiperElement, config);
+        }
       } else {
         new Swiper(swiperElement, config);
       }

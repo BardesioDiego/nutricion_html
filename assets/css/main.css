@@ -56,9 +56,11 @@
   --contrast-color: #ffffff;
 }
 
-/* Smooth scroll */
-:root {
+/* Smooth scroll and offset for sticky header */
+html {
   scroll-behavior: smooth;
+  /* adjust this value to match your header height so anchored sections are not hidden under the sticky header */
+  scroll-padding-top: 90px;
 }
 
 /*--------------------------------------------------------------
@@ -587,7 +589,7 @@ h1 {
 }
 
 .footer .social-icons li a span {
-  color: color-mix(in srgb, var(--heading-color), transparent 0%);
+  color: color-mix(in srgb, #ffffff, transparent 0%);
   position: absolute;
   top: 50%;
   left: 50%;
