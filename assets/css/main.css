@@ -463,7 +463,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  color: color-mix(in srgb, #ffffff, transparent 20%);
   text-decoration: none;
   cursor: pointer;
   padding: 0;
