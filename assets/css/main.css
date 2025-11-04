@@ -2476,3 +2476,24 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+/** wpp link **/
+.float{
+  position:fixed;
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-color);
+  bottom: 5px;
+  left: 2px;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 999;
+}
+.boton-wpp{
+  font-size: 25px;
+}
+.float:hover{
+  background-color: #27e76e;
+}
