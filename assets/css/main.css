@@ -301,16 +301,74 @@ h1 {
   }
 }
 
-/* Navmenu - Mobile */
 @media (max-width: 1199px) {
+  /* Botón hamburguesa */
   .mobile-nav-toggle {
-    color: var(--nav-color);
-    font-size: 28px;
-    line-height: 0;
-    margin-right: 10px;
+    color: #fff;
+    font-size: 26px;
+    background-color: #ff604a;
+    border-radius: 8px;
+    padding: 6px 10px;
     cursor: pointer;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
   }
+
+  .mobile-nav-toggle:hover {
+    background-color: #e3543e;
+    transform: scale(1.05);
+  }
+
+  /* Contenedor del menú desplegable */
+  .navbar-mobile {
+    position: absolute;
+    top: 70px; /* debajo del header */
+    right: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    border-radius: 10px;
+    padding: 15px 25px;
+    z-index: 9999;
+    width: auto;
+    max-width: 250px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
+
+  /* Mostrar menú al hacer click (usa clase show del JS o Bootstrap) */
+  .navbar-mobile.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Estilo de la lista */
+  .navbar-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navbar-mobile ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .navbar-mobile ul li a {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-mobile ul li a:hover,
+  .navbar-mobile ul li a.active {
+    color: #ff604a;
+  }
+}
+
 
   .navmenu {
     padding: 0;
@@ -855,6 +913,14 @@ section,
   margin-bottom: 10px;
   display: block;
   color: #ff604a;
+}
+
+.about-box {
+  border-radius: 20px;
+  overflow: hidden; /* evita que imágenes sobresalgan */
+  background-color: #ffffff; /* opcional, solo si querés un fondo */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* opcional, para destacarlo */
+  padding: 2rem; /* opcional, da espacio interno */
 }
 
 /*--------------------------------------------------------------
@@ -2550,5 +2616,89 @@ section,
   }
   .nav-clean {
     text-align: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Selector concreto para esa ul dentro del footer */
+  #footer ul.list-unstyled.float-start.me-5.nav-clean,
+  #footer ul.list-unstyled.float-start.nav-clean,
+  #footer ul.nav-clean.float-start {
+    float: none !important;               
+    margin: 0 auto !important;            
+    margin-inline: 0 !important;          
+    padding-left: 0 !important;           
+    display: flex !important;             
+    flex-direction: column !important;    
+    align-items: center !important;       
+    justify-content: center !important;
+    width: auto !important;
+  }
+
+  /* Ajustes para los li y links */
+  #footer ul.nav-clean li {
+    width: auto !important;
+    text-align: center !important;
+    margin: 6px 0 !important;             
+  }
+
+  #footer ul.nav-clean li a {
+    display: inline-block !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  #footer .me-5 {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #footer .container {
+    text-align: center !important;
+  }
+
+  #footer .row {
+    justify-content: center !important;
+  }
+
+  #footer .widget,
+  #footer .widget img,
+  #footer .widget ul,
+  #footer .widget p,
+  #footer .widget h3 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #footer .widget ul {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+
+  #footer .widget ul li {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  #footer .widget ul li a {
+    display: inline-block;
+    color: inherit;
+  }
+
+  /* Centrar redes sociales */
+  #footer .social-icons {
+    justify-content: center !important;
+    display: flex !important;
+  }
+
+  /* Centrar copyright */
+  #footer .copyright {
+    flex-direction: column !important;
+    text-align: center !important;
   }
 }

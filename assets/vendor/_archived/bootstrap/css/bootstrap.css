@@ -3330,7 +3330,7 @@ textarea.form-control-lg {
   --bs-btn-color: var(--bs-link-color);
   --bs-btn-bg: transparent;
   --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: var(--bs-link-hover-color);
+  --bs-btn-hover-color: #ff604a;
   --bs-btn-hover-border-color: transparent;
   --bs-btn-active-color: var(--bs-link-hover-color);
   --bs-btn-active-border-color: transparent;
@@ -3344,7 +3344,7 @@ textarea.form-control-lg {
   color: var(--bs-btn-color);
 }
 .btn-link:hover {
-  color: var(--bs-btn-hover-color);
+  color: var(#ff604a;);
 }
 
 .btn-lg, .btn-group-lg > .btn {
