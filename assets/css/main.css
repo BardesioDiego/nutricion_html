@@ -73,7 +73,7 @@ body {
 }
 
 a {
-  color: var(--accent-color);
+  color: #ffffff;
   text-decoration: none;
   transition: 0.3s;
 }
@@ -1309,6 +1309,12 @@ section,
   color: var(--heading-color);
 }
 
+@media (max-width: 768px) {
+  #services-2 .services-item:first-of-type {
+    margin-bottom: 2rem; /* Aumenta este valor si querés más espacio */
+  }
+}
+
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
@@ -1946,7 +1952,7 @@ section,
 
 .blog-details .content blockquote {
   overflow: hidden;
-  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
+  background-color: color-mix(in srgb, #80bd70, transparent 50%);
   padding: 60px;
   position: relative;
   text-align: center;
@@ -2496,4 +2502,53 @@ section,
 }
 .float:hover{
   background-color: #27e76e;
+}
+
+#services .day-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1.2rem 0.8rem;
+  color: #fff;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+  font-size: 0.9rem;
+}
+#services .day-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateY(-5px);
+}
+#services .day-card i {
+  color: #fff;
+  opacity: 0.9;
+}
+#services h2,
+#services p {
+  color: #fff;
+}
+
+.nav-clean a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-clean a:hover,
+.nav-clean a.active {
+  color: #ffffff !important;
+}
+
+
+/* Responsive: centrado en pantallas pequeñas */
+@media (max-width: 768px) {
+  .nav-clean li {
+    display: block;
+    margin: 0.5rem 0;
+  }
+  .nav-clean {
+    text-align: center;
+  }
 }
