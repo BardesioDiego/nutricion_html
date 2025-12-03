@@ -336,3 +336,59 @@
   });
 
 })();
+
+document.querySelectorAll('.js-tab-item').forEach(item => {
+  item.addEventListener('click', e => {
+    e.preventDefault();
+    const target = item.getAttribute('data-target');
+
+    if (window.innerWidth < 768) {
+      // móvil → acordeón
+      const panel = document.getElementById(`accordion-${target}`);
+      if (panel) {
+        // cerrar otros
+        document.querySelectorAll('.accordion-panel').forEach(p => p.classList.remove('active'));
+        // abrir el seleccionado
+        panel.classList.add('active');
+      }
+    } else {
+      // escritorio → tabs
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      document.querySelectorAll('.js-tab-item').forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(target).classList.add('active');
+      item.classList.add('active');
+    }
+  });
+});
+
+document.querySelectorAll('.btn-ver-receta').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    const target = btn.getAttribute('data-target');
+    const tabPanel = document.getElementById(target);
+
+    if (tabPanel) {
+      // activar el tab
+      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+      tabPanel.classList.add('active');
+
+      // scroll hacia el bloque de receta
+      setTimeout(() => {
+        tabPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+
+      // abrir automáticamente el contenido "Leer más"
+      const toggleBtn = tabPanel.querySelector('.collapse-toggle');
+      const collapse = tabPanel.querySelector('.collapse-content');
+
+      if (toggleBtn) {
+        // simular click en el botón de "Leer más"
+        toggleBtn.click();
+      } else if (collapse) {
+        // fallback: mostrar directamente
+        collapse.style.display = 'block';
+      }
+    }
+  });
+});

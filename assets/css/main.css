@@ -2672,3 +2672,30 @@ section,
   }
 }
 
+.btn-ver-receta {
+  display: none; /* oculto por defecto */
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: #ff604a; /* gris muy claro */
+  color: #ffffff; /* texto suave */
+  font-size: 0.9rem;
+  font-weight: 400;
+  border: 1px solid #d0d7de; /* borde fino y delicado */
+  border-radius: 20px; /* forma pill */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-ver-receta:hover {
+  background: #e6ebf0; /* un poco más oscuro al pasar el mouse */
+  color: #000;
+  border-color: #c0c7ce;
+}
+
+@media (max-width: 768px) {
+  .btn-ver-receta {
+    display: inline-block; /* visible solo en pantallas pequeñas */
+  }
+}
+
+
