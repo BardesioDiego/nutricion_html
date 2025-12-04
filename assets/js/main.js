@@ -339,43 +339,152 @@
 
 
 
-document.querySelectorAll('.js-tab-item').forEach(item => {
-  item.addEventListener('click', e => {
-    e.preventDefault();
-    const target = item.getAttribute('data-target');
+document.addEventListener('DOMContentLoaded', () => {
+  // Usar matchMedia para que el breakpoint coincida con el CSS (min-width: 768px)
+  const isDesktop = () => window.matchMedia('(min-width: 768px)').matches;
 
-    // quitar active de todas las cards
-    document.querySelectorAll('.js-tab-item').forEach(tab => tab.classList.remove('active'));
+  // Marca la tarjeta y activa su panel (ahora ACTIVA siempre el panel para que la imagen cambie en móvil)
+  const activateCardAndPanel = (targetId) => {
     // marcar la card seleccionada
-    item.classList.add('active');
+    document.querySelectorAll('.js-tab-item').forEach(tab => {
+      tab.classList.toggle('active', tab.getAttribute('data-target') === targetId);
+    });
 
-    // activar el tab correspondiente (solo escritorio)
-    if (window.innerWidth >= 768) {
-      document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-      const tabPanel = document.getElementById(target);
-      if (tabPanel) tabPanel.classList.add('active');
-    }
+    // activar/desactivar tab-panels (esto asegura que la imagen cambie)
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === targetId);
+    });
+  };
+
+  // Abre un collapse dado (usa aria-controls para encontrar el contenido)
+  const openCollapseByPanel = (panel) => {
+    return new Promise((resolve) => {
+      if (!panel) return resolve();
+
+      const toggleBtn = panel.querySelector('.collapse-toggle');
+      const controlsId = toggleBtn ? toggleBtn.getAttribute('aria-controls') : null;
+      const content = controlsId ? document.getElementById(controlsId) : panel.querySelector('.collapse-content');
+
+      if (!content) return resolve();
+
+      const alreadyOpen = toggleBtn && toggleBtn.getAttribute('aria-expanded') === 'true';
+      if (alreadyOpen || content.classList.contains('expanded')) return resolve();
+
+      // Si existe Bootstrap (v5+), usar su API para abrir y esperar evento
+      if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+        let bs = bootstrap.Collapse.getInstance(content);
+        if (!bs) bs = new bootstrap.Collapse(content, { toggle: false });
+        const onShown = () => {
+          content.removeEventListener('shown.bs.collapse', onShown);
+          resolve();
+        };
+        content.addEventListener('shown.bs.collapse', onShown);
+        bs.show();
+        // fallback por si no llega el evento
+        setTimeout(resolve, 700);
+        return;
+      }
+
+      // Fallback manual: actualizar atributos y clases
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+      content.classList.add('expanded');
+
+      // Esperar transitionend o fallback timeout
+      let done = false;
+      const onEnd = (ev) => {
+        if (ev.target !== content) return;
+        if (done) return;
+        done = true;
+        content.removeEventListener('transitionend', onEnd);
+        resolve();
+      };
+      content.addEventListener('transitionend', onEnd);
+      setTimeout(() => {
+        if (done) return;
+        done = true;
+        content.removeEventListener('transitionend', onEnd);
+        resolve();
+      }, 600);
+    });
+  };
+
+  // Cerrar otros collapses (opcional, para evitar múltiples abiertos)
+  const closeOtherCollapses = (exceptPanel) => {
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      if (panel === exceptPanel) return;
+      const toggleBtn = panel.querySelector('.collapse-toggle');
+      const controlsId = toggleBtn ? toggleBtn.getAttribute('aria-controls') : null;
+      const content = controlsId ? document.getElementById(controlsId) : panel.querySelector('.collapse-content');
+      if (!content) return;
+
+      if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+        const bs = bootstrap.Collapse.getInstance(content);
+        if (bs) bs.hide();
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        content.classList.remove('expanded');
+        if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  };
+
+  // Click en cada tarjeta (.js-tab-item)
+  document.querySelectorAll('.js-tab-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      // Si el click vino desde el botón interno, lo dejamos para su handler
+      if (e.target.closest('.btn-ver-receta')) return;
+      e.preventDefault();
+
+      const target = item.getAttribute('data-target');
+      if (!target) return;
+
+      // Activar tarjeta y su panel en TODAS las resoluciones para que la imagen cambie en móvil
+      activateCardAndPanel(target);
+
+      // En escritorio (o si quieres) puedes seguir forzando comportamiento extra; aquí mantenemos
+      // la coherencia: en desktop se muestra como pestaña, en móvil las panels están apilados.
+      if (isDesktop()) {
+        // en caso de necesitar un comportamiento distinto en desktop, se puede ajustar aquí
+      }
+    });
   });
-});
 
-// Botón "Ver receta" (solo aparece en móvil gracias al CSS)
-document.querySelectorAll('.btn-ver-receta').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    const target = btn.getAttribute('data-target');
-    const tabPanel = document.getElementById(target);
+  // Botón "Ver receta"
+  document.querySelectorAll('.btn-ver-receta').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // evita que el click burbujee al anchor padre
 
-    if (tabPanel) {
-      // scroll hacia el bloque de receta
+      const target = btn.getAttribute('data-target');
+      if (!target) return;
+      const tabPanel = document.getElementById(target);
+      if (!tabPanel) return;
+
+      // 1) Activar tarjeta y panel (esto soluciona que la imagen no cambiaba en móvil)
+      activateCardAndPanel(target);
+
+      // 2) Cerrar otros collapses para evitar solapamientos en móvil
+      closeOtherCollapses(tabPanel);
+
+      // 3) Abrir el collapse de este panel (esperar a que termine)
+      await openCollapseByPanel(tabPanel);
+
+      // 4) Hacer scroll al panel (pequeño timeout para estabilidad)
       setTimeout(() => {
         tabPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
+      }, 60);
+    });
+  });
 
-      // abrir automáticamente el contenido "Leer más"
-      const toggleBtn = tabPanel.querySelector('.collapse-toggle');
-      if (toggleBtn) toggleBtn.click();
+  // Asegurar coherencia al redimensionar (alineado con el CSS breakpoint)
+  window.addEventListener('resize', () => {
+    if (isDesktop()) {
+      const anyActive = document.querySelector('.tab-panel.active');
+      if (!anyActive) {
+        const first = document.querySelector('.tab-panel');
+        if (first) first.classList.add('active');
+      }
     }
   });
 });
-
 
