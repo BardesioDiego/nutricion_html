@@ -2672,30 +2672,54 @@ section,
   }
 }
 
+/* Botón oculto por defecto */
 .btn-ver-receta {
-  display: none; /* oculto por defecto */
-  margin-top: 0.5rem;
-  padding: 0.4rem 0.9rem;
-  background: #ff604a; /* gris muy claro */
-  color: #ffffff; /* texto suave */
-  font-size: 0.9rem;
-  font-weight: 400;
-  border: 1px solid #d0d7de; /* borde fino y delicado */
-  border-radius: 20px; /* forma pill */
+  display: none;
+  margin-top: 0.3rem;
+  padding: 0.25rem 0.6rem;
+  background: #ff604a;
+  color: #fff;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .btn-ver-receta:hover {
-  background: #e6ebf0; /* un poco más oscuro al pasar el mouse */
-  color: #000;
-  border-color: #c0c7ce;
+  background: #e5533f;
 }
 
+/* 📱 Solo en pantallas pequeñas: mostrar el botón en la card activa */
 @media (max-width: 768px) {
-  .btn-ver-receta {
-    display: inline-block; /* visible solo en pantallas pequeñas */
+  .service-item.active .btn-ver-receta {
+    display: inline-block;
   }
+}
+
+.toggle-label {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.8rem;
+  background: #ff604a; /* mismo color que el botón */
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase; /* da un look moderno */
+  letter-spacing: 0.5px;      /* separa un poco las letras */
+}
+
+.toggle-label:hover {
+  background: #e5533f; /* tono más oscuro al pasar el mouse */
+  transform: translateY(-2px); /* efecto sutil de elevación */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.bi-chevron-down::before {
+  content: none !important; /* elimina la flechita */
 }
 
 
