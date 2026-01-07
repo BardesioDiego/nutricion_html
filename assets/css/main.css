@@ -2734,13 +2734,14 @@ section,
   z-index: 9999;
 }
 
-/* Caja del popup */
-.popup-box{
+.popup-box {
   position: relative;
   background: #fff;
   border-radius: 12px;
   overflow: hidden;
-  max-width: 420px;
+  width: 90%; /* Para que en móviles no toque los bordes */
+  max-width: 420px; /* Tamaño original para móvil */
+  transition: max-width 0.3s ease; /* Suaviza el cambio de tamaño */
 }
 
 /* Imagen */
@@ -2766,6 +2767,12 @@ section,
 /* Desktop por defecto */
 .desktop-img{ display: block; }
 .mobile-img{ display: none; }
+
+@media (min-width: 992px) {
+  .popup-box {
+    max-width: 800px; /* Aquí ajustas qué tan grande quieres la imagen en PC */
+  }
+}
 
 /* Cambiar imagen en pantallas pequeñas */
 @media (max-width: 768px){
