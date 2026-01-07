@@ -2723,3 +2723,56 @@ section,
 }
 
 
+/* Fondo oscuro */
+.popup-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Caja del popup */
+.popup-box{
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 420px;
+}
+
+/* Imagen */
+.popup-img{
+  display: block;
+  width: 100%;
+}
+
+/* Botón de cerrar */
+.popup-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: #000000aa;
+  color: white;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Desktop por defecto */
+.desktop-img{ display: block; }
+.mobile-img{ display: none; }
+
+/* Cambiar imagen en pantallas pequeñas */
+@media (max-width: 768px){
+  .desktop-img{ display: none; }
+  .mobile-img{ display: block; }
+
+  .popup-box{
+    max-width: 95%;
+  }
+}
